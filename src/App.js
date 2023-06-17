@@ -15,8 +15,7 @@ function App() {
   };
 
   const hideCartHandler = () => {
-    navigate("/meals");
-    console.log
+    setCartIsShown(false);
   };
 
   return (

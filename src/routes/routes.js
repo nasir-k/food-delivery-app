@@ -1,5 +1,6 @@
 import Cart from "../components/Cart/Cart";
 import Meals from "../components/Meals/Meals";
+import ConfirmDonateScreen from "../screens/ConfirmDonateScreen/ConfirmDonateScreen";
 import DeliveryUpdate from "../screens/DeliveryUpdate/DeliveryUpdate";
 import ThanksMessageScreen from "../screens/ThanksMessageScreen/ThanksMessageScreen";
 
@@ -29,4 +30,9 @@ export const routes = [
     path: "/thankyou-page",
     element: ThanksMessageScreen,
     },
+    {
+      label: "donate-confirm",
+      path: "/donate-confirm",
+      element: ConfirmDonateScreen,
+      },
   ];

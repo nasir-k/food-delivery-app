@@ -16,7 +16,7 @@ const Cart = (props) => {
 
   const [didSubmit, setDidSubmit] = useState(false);
 
-  const [isShareMeal, setIsShareMeal] = useState(false);
+  const [isShareMeal, setIsShareMeal] = useState(true);
 
   const navigate = useNavigate();
 
@@ -55,7 +55,13 @@ const Cart = (props) => {
     setIsCheckout(true);
   };
 
+  const shareMealHandler =(shareMeal)=>{
+    setIsShareMeal((prevState)=> !prevState);
+    console.log(isShareMeal + " ==> isSharemeal")
+  }
+
   const submitOrderHandler = async (userData) => {
+    localStorage.setItem('userData', JSON.stringify(userData));
     setIsSubmitting(true);
     await fetch(
       "https://abbas-s-kitchen-default-rtdb.firebaseio.com/orders.json",
@@ -67,7 +73,7 @@ const Cart = (props) => {
         }),
       }
     );
-    localStorage.setItem('userData', JSON.stringify(userData));
+    shareMealHandler();
     setIsSubmitting(false);
     setDidSubmit(true);
     cartCtx.clearCart();
@@ -94,7 +100,7 @@ const Cart = (props) => {
         <span>{totalAmount}</span>
       </div>
       {isCheckout && (
-        <Checkout onConfirm={submitOrderHandler} onCancel={handleMealsNavigation} />
+        <Checkout onConfirm={submitOrderHandler} onCancel={handleMealsNavigation} onClose={props.onClose} shareMealHandler={shareMealHandler}/>
       )}
       {!isCheckout && modalActions}
     </Fragment>
@@ -102,21 +108,15 @@ const Cart = (props) => {
 
   const isSubmittingModalContent = <p>Sending order data...</p>;
 
-  const shareMealDetailsHandler = ()=>{
-    setIsShareMeal(true);
-  }
-
-  const userData = Cookies.get('cookieName');
-
   const didSubmitModalContent = (
     <Fragment>
-      <p className={classes["order-placed-text"]}>Your order is {isShareMeal ? "Delivered" :  "placed!"}
+      <p className={classes["order-placed-text"]}>Your order is placed!
         <span>
-          <img src={orderPlacedImage} className={classes["order-image"]} onClick={shareMealDetailsHandler}></img>
+          <img src={orderPlacedImage} className={classes["order-image"]}></img>
         </span>
       </p>
       <div className={classes.actions}>
-        <button className={classes.button} onClick={()=> navigate('/delivery-update')}>
+        <button className={classes.button} onClick={()=> navigate(isShareMeal ? '/delivery-update' : "/meals")}>
           Close
         </button>
       </div>

@@ -1,7 +1,8 @@
-import { useRef, useState } from "react";
+import { Fragment, useRef, useState } from "react";
 
 import classes from "./Checkout.module.css";
-import { Checkbox, FormControlLabel, FormGroup, Link, Tooltip } from "@mui/material";
+import { Button, Checkbox, FormControlLabel, FormGroup, Link, Tooltip, Typography } from "@mui/material";
+import Modal from '../UI/Modal';
 
 const isEmpty = (value) => value.trim() === "";
 const isFiveChars = (value) => value.trim().length === 5;
@@ -15,10 +16,13 @@ const Checkout = (props) => {
   });
 
   const [checked, setChecked] = useState(false);
+  const [showMoredetails, setShowMoredetails] = useState(false);
 
   const handleChange = (event) => {
-    setChecked(event.target.checked);
+    setChecked((preState)=> !preState);
+    props.shareMealHandler(checked);
   };
+
 
   const nameInputRef = useRef();
   const streetInputRef = useRef();
@@ -78,14 +82,30 @@ const Checkout = (props) => {
     formInputsValidity.city ? "" : classes.invalid
   }`;
 
+  const moreDetailsModalHandler = ()=>{
+    setShowMoredetails(false);
+  }
+
+  const moreDetailsModalContent = (
+    <Fragment>
+      <Typography>
+      By donating leftover food to NGOs, you contribute to reducing food waste and help provide nourishment to those in need.
+If you select the anove checkbox after you deliver the order NGO will contact you to collect leftover, No opened food
+      </Typography>
+      <Button variant="contained" sx={{backgroundColor:"#8a2b06", marginTop:"2rem"}} onClick={moreDetailsModalHandler}>Close</Button>
+    </Fragment>
+  );
+
   return (
-    <form className={classes.form} onSubmit={confirmHandler}>
+    <Fragment>
+      <form className={classes.form} onSubmit={confirmHandler}>
       <FormGroup>
         <FormControlLabel control={<Checkbox checked={checked} onChange={handleChange}/>} label="Share a meal" /> 
       </FormGroup>
-      <Tooltip title="Add" placement="right-end">
-        <Link component="button" variant="body2" onClick={() => {console.info("I'm a button."); }} sx={{paddingBottom: "20px"}}>More details</Link>
-      </Tooltip>
+        <Link component="button" variant="body2" onClick={(event) => {
+          event.preventDefault();
+          setShowMoredetails(true);
+        }} sx={{paddingBottom: "20px"}}>More details</Link>
       <div className={nameControlClasses}>
         <label htmlFor="name">Your Name</label>
         <input type="text" id="name" ref={nameInputRef} />
@@ -115,6 +135,10 @@ const Checkout = (props) => {
         <button className={classes.submit}>Confirm</button>
       </div>
     </form>
+    {showMoredetails && <Modal onClose={moreDetailsModalHandler}>
+      {moreDetailsModalContent}
+    </Modal>}
+    </Fragment>
   );
 };
 
