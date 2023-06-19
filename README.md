@@ -86,7 +86,7 @@ The Api's we are using its built in AWS.
 
 ## Micro frontend 
 
-the micro frontend is used in this project as NGO portal which is built on PHP.
+the micro frontend is used in this project as NGO portal which is built on HTML,CSS and Javascript.
 That will show the user's pickup location and other order details.
 
 ### Hosting 
