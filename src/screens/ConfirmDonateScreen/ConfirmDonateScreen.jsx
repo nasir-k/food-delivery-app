@@ -28,23 +28,21 @@ theme.typography.h3 = {
   }
 
   const postOrderDetails = async (orderDetails)=>{
-    fetch(
+    await fetch(
       "https://55i53iuqk9.execute-api.ap-south-1.amazonaws.com/prod/orders",
       {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({
-          order: orderDetails,
-        }),
+        body: JSON.stringify(orderDetails),
       }
     )
       .then((response) => {
         // Handle response
       })
       .catch((error) => {
-        // Handle error
+        console.log(error);
       });
     
   }
@@ -55,21 +53,36 @@ theme.typography.h3 = {
     console.log(city, name, postalCode, street);
    
     const orderData ={
-      latitude2: "78.9012",
-      latitude1: "90.1234",
-      longitude2: "12.3456",
-      orderType: "grocery",
-      longitude1: "34.5678",
-      distance: "5.5",
-      handlerId: "12345",
-      status: "delivered",
-      pickupLocation: street +" "+ city +" "+ postalCode,
-      mobileNumber: "0987654321",
-      ngoId: "98765",
-      customerLocation: street +" "+ city +" "+ postalCode,
-      deliveryLocation: "123 Main St",
-      customerName: name
-    }
+
+      "latitude2": "78.9012",
+
+      "latitude1": "90.1234",
+
+      "longitude2": "12.3456",
+
+      "orderType": "grocery",
+
+      "longitude1": "34.5678",
+
+      "distance": "5.5",
+
+      "handlerId": "12345",
+
+      "status": "delivered",
+
+      "pickupLocation": street +" "+ city +" "+ postalCode,
+
+      "mobile": "0987654321",
+
+      "ngoId": "98765",
+
+      "customerLocation": "changed address",
+
+      "deliveryLocation": "123 Main St",
+
+      "customerName": name
+
+}
     postOrderDetails(orderData);
     console.log(orderData)
     localStorage.removeItem('userData');

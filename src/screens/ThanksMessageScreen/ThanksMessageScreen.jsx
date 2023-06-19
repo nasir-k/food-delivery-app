@@ -28,6 +28,10 @@ const ThanksMessageScreen = () => {
           <Typography variant="h3" sx={{marginBottom: "1rem"}}>🌟Your generosity is picked🌟</Typography>
           <Typography>
           Thank you for your generosity. Through your kind donation, you have not only filled empty stomachs but also touched countless lives. Your act of compassion has brought hope and relief to those who have been burdened by hunger.
+
+          You havd earned 10 points with this donation 
+
+          As you have total 50 points and will send you seeds to plant 
         </Typography>
         <Button variant="contained" sx={{backgroundColor:"#8a2b06", marginTop:"2rem"}} onClick={()=> navigate("/meals")}>Back to Meals</Button>
         </Box> }
