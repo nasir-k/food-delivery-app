@@ -27,30 +27,50 @@ theme.typography.h3 = {
     setIsDonate(true);
   }
 
+  const postOrderDetails = async (orderDetails)=>{
+    fetch(
+      "https://55i53iuqk9.execute-api.ap-south-1.amazonaws.com/prod/orders",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          order: orderDetails,
+        }),
+      }
+    )
+      .then((response) => {
+        // Handle response
+      })
+      .catch((error) => {
+        // Handle error
+      });
+    
+  }
+
   const submitDonateFoodHandler=()=>{
     const {city, name, postalCode, street} =  JSON.parse(localStorage.getItem('userData'));
 
-    console.log(city, name, postalCode, street)
+    console.log(city, name, postalCode, street);
    
     const orderData ={
-      Latitude2: "78.9012",
-      Latitude1: "90.1234",
-      Longitude2: "12.3456",
-      OrderType: "grocery",
-      Longitude1: "34.5678",
-      Distance: "5.5",
-      HandlerId: "12345",
-      Status: "delivered",
-      OrderId: Math.random().toFixed(5),
-      PickupLocation: street +" "+ city +" "+ postalCode,
-      MobileNumber: "0987654321",
-      Timestamp: timeSlot,
-      NGOId: "98765",
-      CustomerLocation: street +" "+ city +" "+ postalCode,
-      DeliveryLocation: "123 Main St",
-      CustomerName: name
+      latitude2: "78.9012",
+      latitude1: "90.1234",
+      longitude2: "12.3456",
+      orderType: "grocery",
+      longitude1: "34.5678",
+      distance: "5.5",
+      handlerId: "12345",
+      status: "delivered",
+      pickupLocation: street +" "+ city +" "+ postalCode,
+      mobileNumber: "0987654321",
+      ngoId: "98765",
+      customerLocation: street +" "+ city +" "+ postalCode,
+      deliveryLocation: "123 Main St",
+      customerName: name
     }
-
+    postOrderDetails(orderData);
     console.log(orderData)
     localStorage.removeItem('userData');
     navigate('/thankyou-page');

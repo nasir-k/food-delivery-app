@@ -7,6 +7,7 @@ import orderPlacedImage from "../../assets/food-order-icon.png";
 import { Box, Container, Link, Typography } from "@mui/material";
 import Cookies from "js-cookie";
 import { NavLink, useNavigate } from "react-router-dom";
+import ContainerBox from "./ContainerBox";
 
 
 const Cart = (props) => {
@@ -124,13 +125,11 @@ const Cart = (props) => {
   );
 
   return (
-    <Container sx={{ position:"absolute", top:"10%",left: "16%",width: "90%" }}>
-        <Box sx={{ bgcolor: '#fff', height: '100%',padding: "1rem",borderRadius: "14px"}}>
-          {!isSubmitting && !didSubmit && cartModalContent}
-          {isSubmitting && isSubmittingModalContent}
-          {!isSubmitting && didSubmit && didSubmitModalContent}
-        </Box>
-    </Container>
+    <ContainerBox>
+      {!isSubmitting && !didSubmit && cartModalContent}
+      {isSubmitting && isSubmittingModalContent}
+      {!isSubmitting && didSubmit && didSubmitModalContent}
+    </ContainerBox>
   );
 };
 
