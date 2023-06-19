@@ -1,4 +1,6 @@
-# Getting Started with Create React App
+# Share a meal
+
+## Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
@@ -68,3 +70,27 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+## Frontend 
+
+we have used React for frontend.
+
+### Hosting 
+
+we are using vercel for the frontend hosting.
+
+## Backend and database 
+
+we have used used AWS for the backend and the dataBase.
+The Api's we are using its built in AWS.
+
+## Micro frontend 
+
+the micro frontend is used in this project as NGO portal which is built on PHP.
+That will show the user's pickup location and other order details.
+
+### Hosting 
+
+we are using vercel for the micro frontend hosting. 
+
+
