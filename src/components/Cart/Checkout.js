@@ -89,8 +89,8 @@ const Checkout = (props) => {
   const moreDetailsModalContent = (
     <Fragment>
       <Typography>
-      By donating leftover food to NGOs, you contribute to reducing food waste and help provide nourishment to those in need.
-If you select the anove checkbox after you deliver the order NGO will contact you to collect leftover, No opened food
+      By donating leftover food to NGOs, you contribute to reducing food waste and help provide nourishment to those in need.<br />
+If you select the above checkbox after you deliver the order NGO will contact you to collect surplus, No opened food.
       </Typography>
       <Button variant="contained" sx={{backgroundColor:"#8a2b06", marginTop:"2rem"}} onClick={moreDetailsModalHandler}>Close</Button>
     </Fragment>
